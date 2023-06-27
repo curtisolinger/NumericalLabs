@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Numerical Labs Blog
+{% endblock %}
+
+{% block content %}
+  <h1>Numerical Labs Blog</h1>
+
+  <div class="col-md-8">
+    {% for post in all_posts %}
+      <article class="blog-post">
+        <h2 class="display-5 link-body-emphasis mb-1">{{ post.title }}</h2>
+        <p class="blog-post-meta">{{ post.date }}
+          <a href="#">
+            {{ post.author }}
+          </a>
+        </p>
+        <p>
+          {{ post.subtitle }}
+        </p>
+        <p>
+          {{ post.body|safe }}
+        </p>
+      </article>
+    {% endfor %}
+  </div>
+
+  <div>
+    <a class="btn btn-primary" href="{{ url_for('add_new_blog_post')}}" role="button">Make a new post</a>
+
+  </div>
+
+
+{% endblock %}

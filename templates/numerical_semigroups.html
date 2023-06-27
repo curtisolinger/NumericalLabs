@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}
+  Write a blog post
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  {{ render_form(form) }}
+</div>
+
+<div class="container">
+  <div id="chart" class="embed-responsive embed-responsive-16by9"></div>
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+  <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+      var graphs = {{ graphJSON | safe }};
+    Plotly.plot('chart',graphs,{});
+  </script>
+{% endblock %}
