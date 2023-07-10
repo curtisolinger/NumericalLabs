@@ -1,44 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}
-    <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        {% block styles %}
-            <!-- Bootstrap CSS -->
-            {{ bootstrap.load_css() }}
-        {% endblock %}
-
-        <title>{% block title %}{% endblock %}</title>
-    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-    <div class="wrapper">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url_for('home') }}">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='icons/infinity.svg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Numerical Labs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
-                <a class="nav-link" href="#">About</a>
-                <a class="nav-link" href="{{ url_for('numerical_semigroups') }}" >Numerical Semigroups</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                    <a class="nav-link" href="{{ url_for('semigroups') }}">Semigroups</a>
                 </div>
             </div>
-            </div>
-        </nav>
-        <div class="content">
-            {% block content %}{% endblock %}
         </div>
-    </div>
+    </nav>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+
+<!--    <div class="container">-->
+<!--        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top fixed-bottom">-->
+<!--            <p class="col-md-4 mb-0 text-muted">© 2023 Numerical Labs</p>-->
+
+<!--            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+<!--                <svg class="bi me-2" width="40" height="32">-->
+<!--                    <img src="{{ url_for('static', filename='icons/infinity.svg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
+<!--                </svg>-->
+<!--            </a>-->
+
+<!--        <ul class="nav col-md-4 justify-content-end">-->
+<!--            <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link px-2 text-muted">Home</a></li>-->
+<!--            <li class="nav-item"><a href="{{ url_for('semigroups') }}" class="nav-link px-2 text-muted">Semigroups</a></li>-->
+<!--        </ul>-->
+<!--        </footer>-->
+<!--    </div>-->
 
     {% block scripts %}
-        <!-- Optional JavaScript -->
-        {{ bootstrap.load_js() }}
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     {% endblock %}
 </body>
 </html>

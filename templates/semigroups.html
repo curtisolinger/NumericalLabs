@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Semigroups{% endblock %}
+
+
+{% block content %}
+
+<div class="container text-center my-4">
+    <div class="row">
+        <div class="col h3">Numerical Semigroup Invariants and the Second
+            Frobenius Number</div>
+    </div>
+</div>
+
+<div class="container">
+    <p>
+        Sometimes in mathematics a relatively easy problem to understand can
+        lead to rich discoveries encompassing a diverse set of fields and to
+        discovery new mathematics along the way. One such example is the
+        Frobenius Coin Problem. Imagine, in where you live, your country's
+        currency only has three and five cent coins. Ignoring the question
+        of why your country only has these two denominations, another
+        question you may ask is what is the greatest monetary amount that
+        <em>cannot</em> be obtained from any combination of these coins?
+    </p>
+    <p>
+        By repeated adding of these coins we get the following first ten terms:
+        <div class="container text-center my-2">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    {% for num in exe0 %}
+                        {{ num }},
+                    {% endfor %}...
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+        We can see that the largest integer not in this list is 7.
+    </p>
+    <p>
+        This number is called the Frobenius Number after Ferdinand Georg
+        Frobenius who was a German mathematician born February
+        14, 1877, in a suburb of Berlin.
+        <img src="{{ url_for('static', filename='img/frobenius.jpg') }}"
+             class="rounded float-start mx-2 my-2" width="125"
+             alt="Ferdinand Georg Frobenius">
+        He worked on diverse fields such as elliptic functions, differential
+        equations, number theory, and group theory and taught at the
+        University of Berlin and the ETH Zurich.
+    </p>
+    <p>
+        There are many mathematical numbers and objects named after him but
+        this one in particular will help motivate our study of numerical
+        semigroups and lay the groundwork for the introduction of "The
+        Second Frobenius Number", named by Joseph Gubeladze and Curtis
+        Olinger in their paper "Associated Graded Rings for Numerical Monoid
+        Rings" published 2022.
+    </p>
+    <p>The numbers 3 and 5 are called generators since upon adding these
+        numbers togeather (including reptitions) an infinite number of
+        times, you can "generate" every number except for 1, 2, 4, and 7.
+    </p>
+    <p>To get a feeling for the sets of number an arbitrary set of
+        generators products, try entering in your own generators and see
+        which numbers they product
+    </p>
+</div>
+
+
+
+<!--Some Latex-->
+<div class="container my-4">
+    <p>
+        When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and
+        they are
+        \[
+            x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+        \]
+    </p>
+</div>
+
+<!--Form and graph-->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-4">
+            {{ render_form(form) }}
+        </div>
+        <div class="col-sm-8">
+            <div id="chart"
+                 class="embed-responsive embed-responsive-16by9"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--Invariant table-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            Something
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Semigroup element</th>
+                    <th scope="col">Factorization</th>
+                    <th scope="col"class="text-center">Max factorization length</th>
+                    <th scope="col" class="text-center">Min factorization length</th>
+                    <th scope="col" class="text-center">Elasticity</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for key, value in invariant_dict.items() %}
+                        <tr>
+                            <th scope="row">{{ key }}</th>
+                            <td>
+                                {% for item in value[0] %}
+                                    {{ item }}
+                                    {% if not loop.last %},{% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="text-center">{{ value[1] }}</td>
+                            <td class="text-center">{{ value[2] }}</td>
+                            <td class="text-center">{{ value[3] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script type='text/javascript'>
+        var graphs = {{ graphJSON | safe }};
+        Plotly.plot('chart',graphs,{});
+    </script>
+    {{ super() }}
+{% endblock %}
