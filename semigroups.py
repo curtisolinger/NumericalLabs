@@ -111,3 +111,14 @@ def create_factorization_fig(N, length_counts):
     fig = px.line(df)
     graphjson = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphjson
+
+
+def create_example_1(semigroup):
+    numbers = []
+    for element in semigroup[:50]:
+        num = element.number()
+        if num not in numbers and num <= 20:
+            numbers.append(num)
+    numbers.sort()
+    return numbers
+

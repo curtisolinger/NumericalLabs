@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-                    {% for num in example_1 %}
+                    {% for num in example_0 %}
                         {{ num }},
                     {% endfor %}...
                 </div>
@@ -67,6 +67,28 @@
     </p>
 </div>
 
+<div class="container my-2">
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="{{ url_for('semigroups_form1') }}" method="POST">
+                {{ form1.hidden_tag() }}
+                {{ form1.generators1.label(class="form-label") }}
+                {{ form1.generators1(class="form-control")  }}
+                <br/>
+                {{ form1.submit1(class="btn btn-primary") }}
+            </form>
+
+
+<!--            {{ render_form(form1, id="form1") }}-->
+        </div>
+        <div class="col-sm-8">
+            {% for num in example_1 %}
+                {{ num }},
+            {% endfor %}...
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -85,7 +107,15 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-sm-4">
-            {{ render_form(form) }}
+            <form action="{{ url_for('semigroups_form2') }}" method="POST">
+                {{ form2.hidden_tag() }}
+                {{ form2.generators2.label(class="form-label") }}
+                {{ form2.generators2(class="form-control") }}
+                <br/>
+                {{ form2.submit2(class="btn btn-primary") }}
+            </form>
+
+<!--            {{ render_form(form2, id="form2") }}-->
         </div>
         <div class="col-sm-8">
             <div id="chart"
@@ -141,7 +171,44 @@
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script type='text/javascript'>
         var graphs = {{ graphJSON | safe }};
-        Plotly.plot('chart',graphs,{});
+
+<!--        // Form 1 submission-->
+<!--        $('#form1').submit(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: '/semigroups/form1',-->
+<!--                data: $('#form1').serialize(),-->
+<!--                success: function (response) {-->
+<!--                    $('#example_1').html(response.example_1);-->
+<!--                    $('#chart').html(response.graphJSON);-->
+<!--                    // Update other elements as needed-->
+<!--                },-->
+<!--                error: function (error) {-->
+<!--                    console.log(error);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+
+<!--        // Form 2 submission-->
+<!--        $('#form2').submit(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: '/semigroups/form2',-->
+<!--                data: $('#form2').serialize(),-->
+<!--                success: function (response) {-->
+<!--                    $('#chart').html(response.graphJSON);-->
+<!--                    // Update other elements as needed-->
+<!--                },-->
+<!--                error: function (error) {-->
+<!--                    console.log(error);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+
+
+        Plotly.plot('chart', graphs, {});
     </script>
     {{ super() }}
 {% endblock %}

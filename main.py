@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -8,6 +8,7 @@ from semigroups import (
     calc_num_of_elements_of_len_k,
     create_invariants,
     create_factorization_fig,
+    create_example_1,
 )
 
 # Set the max factorization length to which you wish to examine
@@ -16,55 +17,80 @@ app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
+gen1 = [2, 3]
+gen2 = [3, 5]
 
-class Example2Form(FlaskForm):
-    generators = StringField('Generators (comma-separated)', validators=[
-        DataRequired()], default="3, 5")
-    submit = SubmitField('Submit')
-
-
-class SemigroupForm(FlaskForm):
-    generators = StringField('Generators (comma-separated)', validators=[
+class GeneratorForm1(FlaskForm):
+    generators1 = StringField('Generators1 (comma-separated)', validators=[
         DataRequired()], default="2, 3")
-    submit = SubmitField('Submit')
+    submit1 = SubmitField('Submit1')
+
+
+class GeneratorForm2(FlaskForm):
+    generators2 = StringField('Generators2 (comma-separated)', validators=[
+        DataRequired()], default="3, 5")
+    submit2 = SubmitField('Submit2')
 
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
+@app.route('/semigroups/form1', methods=['GET', 'POST'])
+def semigroups_form1():
+    example_0 = [3, 5, 6, 8, 9, 10, 11, 12, 13, 14]
+    form1 = GeneratorForm1(request.form)
+    form2 = GeneratorForm2()
 
-@app.route('/semigroups', methods=['GET', 'POST'])
-def semigroups():
-    example_1 = [3, 5, 6, 8, 9, 10, 11, 12, 13, 14]
-    form = SemigroupForm()
-    example2form = Example2Form()
+    global gen1
+    global gen2
 
-    if form.validate_on_submit():
-        gen = sorted([int(gen) for gen in form.generators.data.split(",")])
-        semigroup = create_semigroup(gen, N)
-        invariant_dict = create_invariants(semigroup, gen)
-        length_counts = calc_num_of_elements_of_len_k(semigroup, gen, N)
-        graphjson = create_factorization_fig(N, length_counts)
+    if form1.validate_on_submit():
+        gen1 = sorted([int(gen) for gen in form1.generators1.data.split(",")])
 
-        return render_template('semigroups.html',
-                               graphJSON=graphjson,
-                               form=form,
-                               invariant_dict=invariant_dict,
-                               example_1=example_1,
-                               )
-
-    gen = [2, 3]
-    semigroup = create_semigroup(gen, N)
-    invariant_dict = create_invariants(semigroup, gen)
-    length_counts = calc_num_of_elements_of_len_k(semigroup, gen, N)
+    semigroup1 = create_semigroup(gen1, N)
+    semigroup2 = create_semigroup(gen2, N)
+    example_1 = create_example_1(semigroup1)
+    invariant_dict = create_invariants(semigroup2, gen2)
+    length_counts = calc_num_of_elements_of_len_k(semigroup2, gen2, N)
     graphjson = create_factorization_fig(N, length_counts)
 
     return render_template('semigroups.html',
-                           graphJSON=graphjson,
-                           form=form,
-                           invariant_dict=invariant_dict,
+                           example_0=example_0,
+                           form1=form1,
                            example_1=example_1,
+                           form2=form2,
+                           graphJSON=graphjson,
+                           invariant_dict=invariant_dict,
+                           )
+
+
+@app.route('/semigroups/form2', methods=['GET', 'POST'])
+def semigroups_form2():
+    example_0 = [3, 5, 6, 8, 9, 10, 11, 12, 13, 14]
+    form1 = GeneratorForm1()
+    form2 = GeneratorForm2(request.form)
+
+    global gen1
+    global gen2
+
+    if form2.validate_on_submit():
+        gen2 = sorted([int(gen) for gen in form2.generators2.data.split(",")])
+
+    semigroup1 = create_semigroup(gen1, N)
+    semigroup2 = create_semigroup(gen2, N)
+    example_1 = create_example_1(semigroup1)
+    invariant_dict = create_invariants(semigroup2, gen2)
+    length_counts = calc_num_of_elements_of_len_k(semigroup2, gen2, N)
+    graphjson = create_factorization_fig(N, length_counts)
+
+    return render_template('semigroups.html',
+                           example_0=example_0,
+                           form1=form1,
+                           example_1=example_1,
+                           form2=form2,
+                           graphJSON=graphjson,
+                           invariant_dict=invariant_dict,
                            )
 
 
