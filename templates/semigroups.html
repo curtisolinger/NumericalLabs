@@ -71,16 +71,13 @@
     <div class="row">
         <div class="col-sm-4">
             <form action="{{ url_for('semigroups') }}" method="POST">
-                {{ form1.hidden_tag() }}
+                {{ form1.csrf_token }}
                 {{ form1.generators1.label(class="form-label") }}
                 {{ form1.generators1(class="form-control",
-                value=form1.generators1.data)  }}
+                value=session['gen1'])  }}
                 <br/>
                 {{ form1.submit(class="btn btn-primary") }}
             </form>
-
-
-<!--            {{ render_form(form1, id="form1") }}-->
         </div>
         <div class="col-sm-8">
             {% for num in example_1 %}
@@ -109,15 +106,13 @@
     <div class="row">
         <div class="col-sm-4">
             <form action="{{ url_for('semigroups') }}" method="POST">
-                {{ form2.hidden_tag() }}
+                {{ form2.csrf_token }}
                 {{ form2.generators2.label(class="form-label") }}
                 {{ form2.generators2(class="form-control",
-                value=form2.generators2.data) }}
+                value=session['gen2']) }}
                 <br/>
                 {{ form2.submit(class="btn btn-primary") }}
             </form>
-
-<!--            {{ render_form(form2, id="form2") }}-->
         </div>
         <div class="col-sm-8">
             <div id="chart"
