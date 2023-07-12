@@ -70,12 +70,13 @@
 <div class="container my-2">
     <div class="row">
         <div class="col-sm-4">
-            <form action="{{ url_for('semigroups_form1') }}" method="POST">
+            <form action="{{ url_for('semigroups') }}" method="POST">
                 {{ form1.hidden_tag() }}
                 {{ form1.generators1.label(class="form-label") }}
-                {{ form1.generators1(class="form-control")  }}
+                {{ form1.generators1(class="form-control",
+                value=form1.generators1.data)  }}
                 <br/>
-                {{ form1.submit1(class="btn btn-primary") }}
+                {{ form1.submit(class="btn btn-primary") }}
             </form>
 
 
@@ -107,12 +108,13 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-sm-4">
-            <form action="{{ url_for('semigroups_form2') }}" method="POST">
+            <form action="{{ url_for('semigroups') }}" method="POST">
                 {{ form2.hidden_tag() }}
                 {{ form2.generators2.label(class="form-label") }}
-                {{ form2.generators2(class="form-control") }}
+                {{ form2.generators2(class="form-control",
+                value=form2.generators2.data) }}
                 <br/>
-                {{ form2.submit2(class="btn btn-primary") }}
+                {{ form2.submit(class="btn btn-primary") }}
             </form>
 
 <!--            {{ render_form(form2, id="form2") }}-->
