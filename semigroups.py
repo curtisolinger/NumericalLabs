@@ -89,15 +89,42 @@ def create_invariants(semigroup, gen):
     invariant_dict = dict(list(invariant_dict.items())[:10])
     return invariant_dict
 
+def create_invariants_for_single_element(semigroup, single_element, gen):
+    # invariant_list = []
+    invariant_list = [[], 0, 0]
 
-def example1(gen):
-    semigroup = []
-    for k in range(1, 5):
-        multisets_of_size_k = combinations_with_replacement(gen, k)
-        for multisubset in multisets_of_size_k:
-            semigroup.append(SemigroupElement(multisubset, k))
-    semigroup = set(semigroup)
-    return semigroup
+    for semigroup_element in semigroup:
+        if semigroup_element.number() == single_element:
+            invariant_list[0].append(semigroup_element.coefficients(gen))
+
+    factorization_lengths = []
+    coefficient_list = invariant_list[0]
+    for i in range(len(coefficient_list)):
+        factorization_lengths.append(sum(list(coefficient_list[i])))
+    invariant_list[1] = max(factorization_lengths)
+    invariant_list[2] = min(factorization_lengths)
+
+    print(invariant_list)
+    return invariant_list
+
+    # i = 0
+    # while semigroup[i].number() <= single_element:
+    #     if semigroup[i].number() == single_element:
+    #         invariant_dict[single_element][0].append(semigroup[i].coefficients(
+    #         gen))
+    #     i += 1
+
+
+
+
+# def example1(gen):
+#     semigroup = []
+#     for k in range(1, 5):
+#         multisets_of_size_k = combinations_with_replacement(gen, k)
+#         for multisubset in multisets_of_size_k:
+#             semigroup.append(SemigroupElement(multisubset, k))
+#     semigroup = set(semigroup)
+#     return semigroup
 
 
 def create_factorization_fig(N, length_counts):
