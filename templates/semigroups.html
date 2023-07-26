@@ -15,17 +15,70 @@
             </div>
         </div>
         <p>
-            Sometimes in mathematics a relatively easy problem to understand can
-            lead to rich discoveries encompassing a diverse set of fields and to
-            discovery new mathematics along the way. One such example is the
-            Frobenius Coin Problem. Imagine, in where you live, your country's
-            currency only has 3 and 5 cent coins. Ignoring the question
-            of why your country only has these two denominations, another
-            question you may ask is what is the greatest monetary amount that
-            <em>cannot</em> be obtained from any combination of these coins?
+            Imagine in the country you live, the currency is only made up of
+            3 and 5 cent coins. Ignoring the question of why your country
+            has only these two denominations, you might run into the
+            situation of trying to get change for an 8 cent candybar if you
+            only have two 5 cent coins. You would give the store clerk 10
+            cents, but could they give you back 2 cents? In this
+            system, no.
         </p>
         <p>
-            By repeated adding of these coins we get the following first ten terms:
+            Thinking about this another way you may ask, what is the greatest
+            monetary amount that <em>cannot</em> be obtained from any
+            combination of these coins?
+        </p>
+        <p>
+            This is an example of the Frobenius Coin Problem and the answer
+            to the above question is called the Frobenius Number,
+            named after Ferdinand Georg Frobenius. He was a German
+            mathematician born February 14, 1877, in a suburb of Berlin.
+            <img src="{{ url_for('static', filename='img/frobenius.jpg') }}"
+                 class="rounded float-start mx-2 my-2" width="125"
+                 alt="Ferdinand Georg Frobenius">
+            Frobenius worked on diverse fields such as elliptic functions,
+            differential equations, number theory, and group theory and
+            taught at the University of Berlin and the ETH Zurich.
+        </p>
+        <p>
+            Returning to our coins, if there are only two denominations of
+            coins \(x\) and \(y\), the Frobenius Number is given by the
+            equation \(xy - x - y \). For three or more coin systems, there
+            is no explicit answer nor are there any fast and efficient
+            computational algorithms for computing the answer.
+        </p>
+<!--        <p>-->
+<!--            In mathematics, asking a relatively simple questions can-->
+<!--            sometimes lead to rich  discoveries encompassing a diverse set-->
+<!--            of fields and produce some new mathematics along the way.-->
+<!--        </p>-->
+        <p>
+            In whatever number of coins your country has for denominations,
+            and number of monetary values can be produced by repeatedly
+            adding these coins together. If you take all possible values of
+            coins, then you get a mathematical object called a <em>numerical
+            semigroup</em>.
+        </p>
+        <p>
+            In this article we will investigate elements of numerical
+            semigroups and their associated factorization lengths. Or
+            rather, the number of coins of each denomination it takes to add
+            up to a particular value.
+        </p>
+        <p>
+            So in our country with only 3 and 5 cent coins, the value of 15
+            cents has a factorization length of three and five since three
+            times 5 cents equals 15 cents, as does five times 3 cents.
+        </p>
+        <p>
+            In terms of numerical semigroups, the denominations in your
+            country's currency system are called generators since repeatedly
+            adding them together (including repetitions) in any combination
+            "generates" all the other possible values of money.
+        </p>
+        <p>
+            If your generators are 3 and 5, repeated adding of these numbers
+            we result in the following first ten terms:
             <div class="container text-center my-2">
                 <div class="row">
                     <div class="col-sm-3"></div>
@@ -37,54 +90,32 @@
                     <div class="col-sm-3"></div>
                 </div>
             </div>
-            We can see that the largest integer not in this list is 7.
-        </p>
-        <p>
-            This number is called the Frobenius Number after Ferdinand Georg
-            Frobenius who was a German mathematician born February
-            14, 1877, in a suburb of Berlin.
-            <img src="{{ url_for('static', filename='img/frobenius.jpg') }}"
-                 class="rounded float-start mx-2 my-2" width="125"
-                 alt="Ferdinand Georg Frobenius">
-            He worked on diverse fields such as elliptic functions, differential
-            equations, number theory, and group theory and taught at the
-            University of Berlin and the ETH Zurich.
+            Every number except for 1, 2, 4, and 7 is in this list.
         </p>
         <p id="gen1">
-            There are many mathematical numbers and objects named after him but
-            this one in particular will help motivate our study of numerical
-            semigroups and lay the groundwork for the introduction of "The
-            Second Frobenius Number", named by Joseph Gubeladze and Curtis
-            Olinger in their paper "Associated Graded Rings for Numerical Monoid
-            Rings" published 2022.
-        </p>
-        <p>The numbers 3 and 5 are called generators since upon adding these
-            numbers together (including repetitions) in any combination, you can
-            "generate" every number except for 1, 2, 4, and 7.
             Using mathematical notation we would write this set as
             \[
                 \langle 3, 5 \rangle = \{3, 5, 6, 8, 9, 10, \ldots \}
             \]
             where \( \langle 3, 5 \rangle\) denotes the set generated by 3 and 5.
         </p>
+
+<!--        <p id="gen1">-->
+<!--            There are many mathematical numbers and objects named after him but-->
+<!--            this one in particular will help motivate our study of numerical-->
+<!--            semigroups and lay the groundwork for the introduction of "The-->
+<!--            Second Frobenius Number", named by Joseph Gubeladze and Curtis-->
+<!--            Olinger in their paper "Associated Graded Rings for Numerical Monoid-->
+<!--            Rings" published 2022.-->
+<!--        </p>-->
         <p>
             To get a feeling for the numbers generated by a set of generators,
             try entering in your own generators and see which numbers they
             produce (please limit the number of generators to
             as most three).
         </p>
-
-
-
-
-
-
-
-
         <div class="container">
-
             <div class="row my-4">
-
                 <div class="col-3">
                     <form action="{{ url_for('semigroups', _anchor='gen1') }}"
                           method="POST">
@@ -95,7 +126,6 @@
                         {{ form1.submit(class="btn btn-primary") }}
                     </form>
                 </div>
-
                 <div class="col-9 row align-items-center">
                     {% for num in example_1 %}
                         {{ num }},
