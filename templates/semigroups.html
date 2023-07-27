@@ -36,101 +36,91 @@
 {% block content %}
 
 <div class="container">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8 mx-auto">
-        <br>
-        <p>
-            Imagine in the country you live, the currency is only made up of 3 and 5 cent coins. Ignoring the question of why your country has only these two denominations, you might run into the situation of trying to get change for an 8 cent candybar if you only have two 5 cent coins. You would give the store clerk 10 cents, but could they give you back 2 cents? In this system, no.
-        </p>
-        <p>
-            In a 3 and 5 coin system, there are values of money that you cannot create such as 2, 3, 4, and 7 cents. But then every value of currency after that is obtainable given you have enough 3 and 5 cent coins. A question you may ask is what is the greatest monetary amount that cannot be obtained from any combination of these coins?
-        </p>
-        <p>
-            This is an example of the Frobenius Coin Problem and the answer
-            to the above question is called the <em>Frobenius Number</em>,
-            named after Ferdinand Georg Frobenius. He was a German
-            mathematician born February 14, 1877, in a suburb of Berlin.
-            <img src="{{ url_for('static', filename='img/frobenius.jpg') }}"
-                 class="rounded float-start mx-2 my-2" width="125"
-                 alt="Ferdinand Georg Frobenius">
-            Frobenius worked on diverse fields such as elliptic functions,
-            differential equations, number theory, and group theory and
-            taught at the University of Berlin and the ETH Zurich.
-        </p>
-        <p>
-            If there are only two denominations of coins \(x\) and \(y\), the Frobenius Number is given by the equation \(xy - x - y \). In our 3 and 5 cent system, the Frobenius number is \(3 \times 5 - 3 - 5 = 7\) as previously observed.
-        </p>
-<!--        <p>-->
-<!--            In mathematics, asking a relatively simple questions can-->
-<!--            sometimes lead to rich  discoveries encompassing a diverse set-->
-<!--            of fields and produce some new mathematics along the way.-->
-<!--        </p>-->
-        <p>
-            For a three or more coin system, there is no explicit answer nor are there any fast and efficient computational algorithms for computing the answer.
-        </p>
-        <h5>The Second Frobenius Number</h5>
-        <p>
-            Another situation that arises is how to use up all the change that ones collects, usually in a kitchen catch-all drawer. If I know the price of something ahead of time, I might go through the coins in my drawer and try to use up as many of them as I can. If something cost 15 cents and I have a lot of 3 and 5 cents coins, I would take to the store five 3 cent coins instead of only three 5 cent coins, thus reducing the number of overall coins I have at home.
-        </p>
-        <p>
-            The factorization length of a value is the number of coins it takes to add up to that value. There are two factorization lengths for the value of 15 cents, 3 and 5. The max factorization length is the larger of these two numbers and the min factorization length is the smaller. The max factorization length of 15 cents is 5 coins.
-        </p>
-        <p>
-            What other values have a max factorization length of 5 coins? Well, 17 cents does as the only way to get 17 cents is with four 3 cents coins and one 5 cent coin. Sometimes the max and min factorization length are the same. Are there any other values with a max factorization length of 5? There is one more: 19, as you can get that with three 3 cent coins and two 5 cent coins. But that is it. The number of elements with a max factorization length of five is 3.
-        </p>
-        <p>
-            Now thinking more generally, is the number of elements with a max factorization length of k always 3? No, there are only two numbers with a max factorization length of 1, that is specifically three and five cents. Can you have more that 3 elements with a max factorization length of 3? Again, no. For any factorization length you can think of, the number of elements with that length is always less than or equal to three in our 3, 5 coin system.
-        </p>
-        <p>
-            This raises an interesting question: given an arbitrary coin system with any number of denomination of coins, does the number of values of money you can create with a max factorization length of k always stabilize at some value. The answer is yes, and the number at which it stabilizes is called The Second Frobenius Number.
-        </p>
-        <h5>Generators</h5>
-        <p>
-            The coins our country's currency system are example of generators as they can ``generate'' all possible value of money given you have enought coins.
-        </p>
-        <p>
-            If your generators are 3 and 5, repeated adding of these numbers
-            we result in the following first ten terms:
-            <div class="container text-center my-2">
-                <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
-                        {% for num in example_0 %}
-                            {{ num }},
-                        {% endfor %}...
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-            </div>
-            Every number except for 1, 2, 4, and 7 is in this list.
-        </p>
-        <p id="gen1">
-            Using mathematical notation we would write this set as
-            \[
-                \langle 3, 5 \rangle = \{3, 5, 6, 8, 9, 10, \ldots \}
-            \]
-            where \( \langle 3, 5 \rangle\) denotes the set generated by 3
-            and 5. Notice that you cannot obtain 1, 2, 4, and 7.
-        </p>
-        <p>
-            Mathematically we would write,
-            \[
-	            \mathbb{Z^+} \setminus \langle 5, 7 \rangle = \{ 1, 2, 4, 7 \}
-            \]
-            where $\mathbb{Z}^+$ is the set of positive integers. We would have the complement of the set of possible monteary values within the set of positive integers is finite.
-        </p>
-        <p>
-            This is not always the case. If we take 2 as a generator, we get all the positive even numbers and its complement in the set of positive integers is not finite. Namely the comlement is the positive odd integers.
-        </p>
-        <p>
-            To get a feeling for the numbers generated by a set of generators,
-            try entering in your own generators and see which numbers they
-            produce (please limit the number of generators to
-            as most three).
-        </p>
-        <div class="container">
-            <div class="row my-4">
-                <div class="col-3">
+    <div class="row">
+        <div class="col-lg-12 mx-auto">
+            <br>
+            <p>
+                Imagine in the country you live, the currency is only made up of 3 and 5 cent coins. Ignoring the question of why your country has only these two denominations, you might run into the situation of trying to get change for an 8 cent candybar if you only have two 5 cent coins. You would give the store clerk 10 cents, but could they give you back 2 cents? In this system, no.
+            </p>
+            <p>
+                In a 3 and 5 coin system, there are values of money that you
+                cannot create such as 2, 3, 4, and 7 cents. But every value
+                after that is obtainable given you have enough 3 and 5 cent
+                coins.
+            </p>
+            <p>
+                <img src="{{ url_for('static', filename='img/frobenius.jpg') }}"
+                     class="rounded float-start mx-2 my-2" width="125"
+                     alt="Ferdinand Georg Frobenius">
+                Trying to determine the largest monetary value not
+                obtainable using a country's coin system is an example of
+                the Frobenius Coin Problem and the answer is called the
+                <em>Frobenius Number</em>, named after Ferdinand Georg
+                Frobenius. He was a German
+                mathematician born February 14, 1877, in a suburb of Berlin.
+                Frobenius worked on diverse fields such as elliptic functions,
+                differential equations, number theory, and group theory and
+                taught at the University of Berlin and the ETH Zurich.
+            </p>
+            <p>
+                If there are only two denominations of coins \(x\) and \(y\), the Frobenius Number is given by the equation \(xy - x - y \). In our 3 and 5 cent system, the Frobenius number is \(3 \times 5 - 3 - 5 = 7\) as previously observed.
+            </p>
+            <p>
+                For a three or more coin system, there is no explicit answer nor are there any fast and efficient computational algorithms for computing the answer.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <h5>Generators</h5>
+            <p>
+                The coins our country's currency system are example of generators as they can ``generate'' all possible value of money given you have enought coins.
+            </p>
+            <p>
+                If your generators are 3 and 5, repeated adding of these numbers
+                we result in the following first ten terms:
+                3, 5, 6, 8, 9, 10, 11, 12, 13, 14.
+    <!--            <div class="container text-center my-2">-->
+    <!--                <div class="row">-->
+    <!--                    <div class="col-sm-3"></div>-->
+    <!--                    <div class="col-sm-6">-->
+    <!--                        {% for num in example_0 %}-->
+    <!--                            {{ num }},-->
+    <!--                        {% endfor %}...-->
+    <!--                    </div>-->
+    <!--                    <div class="col-sm-3"></div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+                Every number except for 1, 2, 4, and 7 is in this list.
+            </p>
+            <p>
+                Using mathematical notation we would write this set as
+                \[
+                    \langle 3, 5 \rangle = \{3, 5, 6, 8, 9, 10, \ldots \}
+                \]
+                where \( \langle 3, 5 \rangle\) denotes the set generated by 3
+                and 5. Notice that you cannot obtain 1, 2, 4, and 7.
+            </p>
+            <p>
+                Mathematically we would write,
+                \[
+                    \mathbb{Z^+} \setminus \langle 5, 7 \rangle = \{ 1, 2, 4, 7 \}
+                \]
+                where $\mathbb{Z}^+$ is the set of positive integers. We would have the complement of the set of possible monteary values within the set of positive integers is finite.
+            </p>
+            <p>
+                This is not always the case. If we take 2 as a generator, we get all the positive even numbers and its complement in the set of positive integers is not finite. Namely the comlement is the positive odd integers.
+            </p>
+            <p>
+                To get a feeling for the numbers generated by a set of generators,
+                try entering in your own generators and see which numbers they
+                produce (please limit the number of generators to
+                as most three).
+            </p>
+        </div>
+        <div class="col-lg-6 mx-auto" id="gen1">
+            <div class="row">
+                <div class="col">
                     <form action="{{ url_for('semigroups', _anchor='gen1') }}"
                           method="POST">
                         {{ form1.csrf_token }}
@@ -140,81 +130,53 @@
                         {{ form1.submit(class="btn btn-primary") }}
                     </form>
                 </div>
-                <div class="col-9 row align-items-center">
+            </div>
+            <div class="row">
+                <div class="col">
                     {% for num in example_1 %}
                         {{ num }},
                     {% endfor %}...
                 </div>
             </div>
         </div>
-        <h5>Numerical Semigroups</h5>
-        <p>
-            By examining all the values we can create with whatever denominations of coins we have in our currency system, as long as the coins themselves don`t share any common factors, we've have been creating a structure called a numerical semigroup. The coins themselves are called generators since they ``generate'' all possible values of money.
-        </p>
-        <p>
-            Formally, a numerical semigroup is a subset of the nonnegative integers with addition as the binary operations (meaning you can add numbers and the result will be in this set) and a finite complement with the positive integers.
-        </p>
-        <p>
-            Thus 3 and 5 create a numerical semigroup but 2 does not. In fact, all you need from a set of generators to create a numerical semigroup is for the generators to be relative prime, that is, they only share a common factor of 1.
-        </p>
-        <p>
-            Next notice that every numerical semigroup has a set of generators. The easiest way to see this is to consider the smallest non-zero element in the semigroup. This element, together with all other elements in the semigroup that are not divisible by it, form a set of generators of the semigroup.
-        </p>
-        <p>
-            This is because every element in the semigroup can be expressed as a linear combination of the generators with non-negative integer coefficients. Thus, every numerical semigroup does indeed have a set of generators.
-        </p>
-        <p>
-            While every numerical semigroup contains a set of generators, the inverse that every set of generators creates a numerical semigroup is not always true. The even integers generated by 2 is an example of this.
-        </p>
-        <p>
-            Numerical Semigroups are the main field of study for this article and while they might seem simple, there is a great deal to discover about them. To get started, we will lay out some definitions that will allow us to examine numbers, called invariants, that capture information about the structure of the semigroups.
-        </p>
-        <h5>Max and min factorization lengths</h5>
-        <p>
-            Let \( m_1, \ldots, m_n \) be a set of generators for the
-            numerical monoid \( M \). Then, for any monoid element \(m \),
-            the <em>set of factorizations of \(m \in M \)</em> is
-            \[
-                \mathsf{Z}(m) = \left \{ (a_1, \ldots, a_k) \mid m =
-            \sum_{i=1}^{k} a_im_i \right \}
-            \]
-            and the <em>set of factorization lengths of \(m \in M\)</em> to be
-            \[
-                \mathsf{L}(m) = \left\{\sum_{i = 1}^{k} a_i : (a_1, \ldots,
-            a_k) \in \mathsf{Z}(m)\right\}.
-            \]
-        </p>
-        <p>
-            For example, in the monoid generated by 2 and 3, the element 6
-            has the following two factorizations (3, 0) and (0, 2) since
-            \[
-                (3, 0) \cdot (2, 3) = 3 \times 2 + 0 \times 3 = 6
-            \]
-            and
-            \[
-                (0, 2) \cdot (2, 3) = 0 \times 2 + 2 \times 3 = 6
-            \]
-            where \( \cdot \) is the dot product operation from linear
-            algebra. Thus
-            \[
-                \mathsf{Z}(6) = \left \{ (3, 0), (0, 2) \right \}.
-            \]
-            The element 6 then has the set of factorization lengths of
-            \[
-                \mathsf{L}(m) = \{ 3, 2 \}
-            \]
-            and it has a <em>maximum factorization length</em> 3 and a
-            <em>minimum factorization length</em> of 2. In the following
-            form, you can enter some generators and examine particular
-            semigroup elements to see the set of factorization and
-            factorization lengths along with the max length and min length
-            for the element.
-        </p>
-
-        <!--Single element invariant chart-->
-        <div class="container" id="gen3">
+    </div>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <h5>The Second Frobenius Number</h5>
+            <p>
+                Another situation that arises is how to use up all the
+                change that ones collects, usually in a kitchen catch-all
+                drawer. If I know the price of something ahead of time, I
+                might try to arrive at that value using the greatest number
+                of coins possible.
+            </p>
+            <p>
+                If something cost 15 cents and I have
+                a lot of 3 and 5 cents coins, I would take to the store five
+                3 cent coins instead of only three 5 cent coins, thus
+                reducing the number of overall coins I have at home.
+            </p>
+            <p>
+                The factorization length of a value is the number of coins
+                it takes to add up to that value. There are two
+                factorization lengths for the value of 15 cents, 3 and 5.
+                The max factorization length is the larger of these two
+                numbers and the min factorization length is the smaller. The
+                max factorization length of 15 cents is 5 coins.
+            </p>
+            <p>
+                What other values have a max factorization length of 5 coins? Well, 17 cents does as the only way to get 17 cents is with four 3 cents coins and one 5 cent coin. Sometimes the max and min factorization length are the same. Are there any other values with a max factorization length of 5? There is one more: 19, as you can get that with three 3 cent coins and two 5 cent coins. But that is it. The number of elements with a max factorization length of five is 3.
+            </p>
+            <p>
+                Now thinking more generally, is the number of elements with a max factorization length of k always 3? No, there are only two numbers with a max factorization length of 1, that is specifically three and five cents. Can you have more that 3 elements with a max factorization length of 3? Again, no. For any factorization length you can think of, the number of elements with that length is always less than or equal to three in our 3, 5 coin system.
+            </p>
+            <p>
+                This raises an interesting question: given an arbitrary coin system with any number of denomination of coins, does the number of values of money you can create with a max factorization length of k always stabilize at some value. The answer is yes, and the number at which it stabilizes is called The Second Frobenius Number.
+            </p>
+        </div>
+        <div class="col-lg-6 mx-auto" id="gen3">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col">
                     <form action="{{ url_for('semigroups', _anchor='gen3') }}"
                           method="POST">
                         {{ form3.csrf_token }}
@@ -227,7 +189,9 @@
                         {{ form3.submit(class="btn btn-primary") }}
                     </form>
                 </div>
-                <div class="col-sm-8">
+            </div>
+            <div class="row">
+                <div class="col">
                     <table class="table table-striped px-4">
                         <thead>
                             <tr>
@@ -252,96 +216,142 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <h5>Numerical Semigroups</h5>
+            <p>
+                By examining all the values we can create with whatever denominations of coins we have in our currency system, as long as the coins themselves don`t share any common factors, we've have been creating a structure called a numerical semigroup. The coins themselves are called generators since they ``generate'' all possible values of money.
+            </p>
+            <p>
+                Formally, a numerical semigroup is a subset of the nonnegative integers with addition as the binary operations (meaning you can add numbers and the result will be in this set) and a finite complement with the positive integers.
+            </p>
+            <p>
+                Thus 3 and 5 create a numerical semigroup but 2 does not. In fact, all you need from a set of generators to create a numerical semigroup is for the generators to be relative prime, that is, they only share a common factor of 1.
+            </p>
+            <p>
+                Next notice that every numerical semigroup has a set of generators. The easiest way to see this is to consider the smallest non-zero element in the semigroup. This element, together with all other elements in the semigroup that are not divisible by it, form a set of generators of the semigroup.
+            </p>
+            <p>
+                This is because every element in the semigroup can be expressed as a linear combination of the generators with non-negative integer coefficients. Thus, every numerical semigroup does indeed have a set of generators.
+            </p>
+            <p>
+                While every numerical semigroup contains a set of generators, the inverse that every set of generators creates a numerical semigroup is not always true. The even integers generated by 2 is an example of this.
+            </p>
+            <p>
+                Numerical Semigroups are the main field of study for this article and while they might seem simple, there is a great deal to discover about them. To get started, we will lay out some definitions that will allow us to examine numbers, called invariants, that capture information about the structure of the semigroups.
+            </p>
 
-        <p>
-            A question I was interested in regarding these max factorization
-            lengths is for any max factorization length k, how many monoid
-            elements have that max factorization length?
-        </p>
-        <p>
-            For example in the monid generated by 2 and 3, 6 has a max
-            factorization length of 3 but so does 5. By looking at the max
-            factorization lengths for the nearby elements, it is the case
-            that there are only two elements that have a max factorization
-            length of 2.
-        </p>
-
-        <!--Form and graph-->
-        <div class="container my-5" id="gen2">
+            <h5>Max and min factorization lengths</h5>
+            <p>
+                Let \( m_1, \ldots, m_n \) be a set of generators for the
+                numerical monoid \( M \). Then, for any monoid element \(m \),
+                the <em>set of factorizations of \(m \in M \)</em> is
+                \[
+                    \mathsf{Z}(m) = \left \{ (a_1, \ldots, a_k) \mid m =
+                \sum_{i=1}^{k} a_im_i \right \}
+                \]
+                and the <em>set of factorization lengths of \(m \in M\)</em> to be
+                \[
+                    \mathsf{L}(m) = \left\{\sum_{i = 1}^{k} a_i : (a_1, \ldots,
+                a_k) \in \mathsf{Z}(m)\right\}.
+                \]
+            </p>
+            <p>
+                For example, in the monoid generated by 2 and 3, the element 6
+                has the following two factorizations (3, 0) and (0, 2) since
+                \[
+                    (3, 0) \cdot (2, 3) = 3 \times 2 + 0 \times 3 = 6
+                \]
+                and
+                \[
+                    (0, 2) \cdot (2, 3) = 0 \times 2 + 2 \times 3 = 6
+                \]
+                where \( \cdot \) is the dot product operation from linear
+                algebra. Thus
+                \[
+                    \mathsf{Z}(6) = \left \{ (3, 0), (0, 2) \right \}.
+                \]
+                The element 6 then has the set of factorization lengths of
+                \[
+                    \mathsf{L}(m) = \{ 3, 2 \}
+                \]
+                and it has a <em>maximum factorization length</em> 3 and a
+                <em>minimum factorization length</em> of 2. In the following
+                form, you can enter some generators and examine particular
+                semigroup elements to see the set of factorization and
+                factorization lengths along with the max length and min length
+                for the element.
+            </p>
+            <p>
+                A question I was interested in regarding these max factorization
+                lengths is for any max factorization length k, how many monoid
+                elements have that max factorization length?
+            </p>
+            <p>
+                For example in the monid generated by 2 and 3, 6 has a max
+                factorization length of 3 but so does 5. By looking at the max
+                factorization lengths for the nearby elements, it is the case
+                that there are only two elements that have a max factorization
+                length of 2.
+            </p>
+        </div>
+        <div class="col-lg-6 mx-auto">
             <div class="row">
-                <div class="col-sm-4">
+                <!--Form and graph-->
+                <div class="col">
                     <form action="{{ url_for('semigroups', _anchor='gen2') }}"
-                          method="POST">
-                        {{ form2.csrf_token }}
-                        {{ form2.generators2.label(class="form-label") }}
-                        {{ form2.generators2(class="form-control",
-                        value=session['gen2']) }}
-                        <br/>
-                        {{ form2.submit(class="btn btn-primary") }}
+                              method="POST">
+                            {{ form2.csrf_token }}
+                            {{ form2.generators2.label(class="form-label") }}
+                            {{ form2.generators2(class="form-control",
+                            value=session['gen2']) }}
+                            <br/>
+                            {{ form2.submit(class="btn btn-primary") }}
                     </form>
                 </div>
-                <div class="col-sm-8">
-                    <div id="chart"
-                         class="embed-responsive embed-responsive-16by9"></div>
+            </div>
+            <div class="row">
+                <div class="col" id="gen2">
+                    <div id="chart" class="embed-responsive embed-responsive-16by9"></div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <!--Invariant table-->
+                    <table class="table table-striped px-4">
+                <thead>
+                <tr>
+                    <th scope="col">Semigroup element</th>
+                    <th scope="col">Factorization</th>
+                    <th scope="col"class="text-center">Max factorization length</th>
+                    <th scope="col" class="text-center">Min factorization length</th>
+                    <th scope="col" class="text-center">Elasticity</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for key, value in invariant_dict.items() %}
+                        <tr>
+                            <th scope="row">{{ key }}</th>
+                            <td>
+                                {% for item in value[0] %}
+                                    {{ item }}
+                                    {% if not loop.last %},{% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="text-center">{{ value[1] }}</td>
+                            <td class="text-center">{{ value[2] }}</td>
+                            <td class="text-center">{{ value[3] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                </div>
+
+            </div>
         </div>
-
-        <!--Invariant table-->
-        <table class="table table-striped px-4">
-            <thead>
-            <tr>
-                <th scope="col">Semigroup element</th>
-                <th scope="col">Factorization</th>
-                <th scope="col"class="text-center">Max factorization length</th>
-                <th scope="col" class="text-center">Min factorization length</th>
-                <th scope="col" class="text-center">Elasticity</th>
-            </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                {% for key, value in invariant_dict.items() %}
-                    <tr>
-                        <th scope="row">{{ key }}</th>
-                        <td>
-                            {% for item in value[0] %}
-                                {{ item }}
-                                {% if not loop.last %},{% endif %}
-                            {% endfor %}
-                        </td>
-                        <td class="text-center">{{ value[1] }}</td>
-                        <td class="text-center">{{ value[2] }}</td>
-                        <td class="text-center">{{ value[3] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-
-
     </div>
-    <div class="col-lg-2"></div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% endblock %}
 
 {% block scripts %}
