@@ -20,7 +20,7 @@ bootstrap = Bootstrap5(app)
 # $ python -c 'import secrets; print(secrets.token_hex())'
 website_key = os.environ.get('SITE_KEY')
 print(website_key)
-app.config['SECRET_KEY'] = str(website_key)
+app.config['SECRET_KEY'] = 'mysecretkey'
 gen1 = [2, 3]
 gen2 = [3, 5]
 gen3 = [2, 3]
