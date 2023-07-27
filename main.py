@@ -46,7 +46,9 @@ class GeneratorForm3(FlaskForm):
         DataRequired()])
     submit = SubmitField('Submit')
 
-
+@app.route('/cover')
+def cover():
+    return render_template('cover.html')
 
 
 @app.route('/')

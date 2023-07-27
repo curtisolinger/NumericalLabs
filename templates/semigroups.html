@@ -3,34 +3,51 @@
 {% block title %}Semigroups{% endblock %}
 
 
+{% block header %}
+<header>
+    <style>
+        .header {
+            background: url({{ url_for('static', filename='img/sunset_1.jpg')
+            }}) no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;  /* or any color you prefer */
+        }
+    </style>
+    <div class="header">
+        <div class="container text-center">
+            <h1>
+                Numerical Semigroup Invariants and the Second Frobenius
+                Number
+            </h1>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+
+
+
+
+
 {% block content %}
 
 <div class="container">
     <div class="col-lg-2"></div>
     <div class="col-lg-8 mx-auto">
-        <div class="container text-center my-4">
-            <div class="row">
-                <div class="col h3">Numerical Semigroup Invariants and the
-                    Second Frobenius Number</div>
-            </div>
-        </div>
+        <br>
         <p>
-            Imagine in the country you live, the currency is only made up of
-            3 and 5 cent coins. Ignoring the question of why your country
-            has only these two denominations, you might run into the
-            situation of trying to get change for an 8 cent candybar if you
-            only have two 5 cent coins. You would give the store clerk 10
-            cents, but could they give you back 2 cents? In this
-            system, no.
+            Imagine in the country you live, the currency is only made up of 3 and 5 cent coins. Ignoring the question of why your country has only these two denominations, you might run into the situation of trying to get change for an 8 cent candybar if you only have two 5 cent coins. You would give the store clerk 10 cents, but could they give you back 2 cents? In this system, no.
         </p>
         <p>
-            Thinking about this another way you may ask, what is the greatest
-            monetary amount that <em>cannot</em> be obtained from any
-            combination of these coins?
+            In a 3 and 5 coin system, there are values of money that you cannot create such as 2, 3, 4, and 7 cents. But then every value of currency after that is obtainable given you have enough 3 and 5 cent coins. A question you may ask is what is the greatest monetary amount that cannot be obtained from any combination of these coins?
         </p>
         <p>
             This is an example of the Frobenius Coin Problem and the answer
-            to the above question is called the Frobenius Number,
+            to the above question is called the <em>Frobenius Number</em>,
             named after Ferdinand Georg Frobenius. He was a German
             mathematician born February 14, 1877, in a suburb of Berlin.
             <img src="{{ url_for('static', filename='img/frobenius.jpg') }}"
@@ -41,11 +58,7 @@
             taught at the University of Berlin and the ETH Zurich.
         </p>
         <p>
-            Returning to our coins, if there are only two denominations of
-            coins \(x\) and \(y\), the Frobenius Number is given by the
-            equation \(xy - x - y \). For three or more coin systems, there
-            is no explicit answer nor are there any fast and efficient
-            computational algorithms for computing the answer.
+            If there are only two denominations of coins \(x\) and \(y\), the Frobenius Number is given by the equation \(xy - x - y \). In our 3 and 5 cent system, the Frobenius number is \(3 \times 5 - 3 - 5 = 7\) as previously observed.
         </p>
 <!--        <p>-->
 <!--            In mathematics, asking a relatively simple questions can-->
@@ -53,28 +66,27 @@
 <!--            of fields and produce some new mathematics along the way.-->
 <!--        </p>-->
         <p>
-            In whatever number of coins your country has for denominations,
-            and number of monetary values can be produced by repeatedly
-            adding these coins together. If you take all possible values of
-            coins, then you get a mathematical object called a <em>numerical
-            semigroup</em>.
+            For a three or more coin system, there is no explicit answer nor are there any fast and efficient computational algorithms for computing the answer.
+        </p>
+        <h5>The Second Frobenius Number</h5>
+        <p>
+            Another situation that arises is how to use up all the change that ones collects, usually in a kitchen catch-all drawer. If I know the price of something ahead of time, I might go through the coins in my drawer and try to use up as many of them as I can. If something cost 15 cents and I have a lot of 3 and 5 cents coins, I would take to the store five 3 cent coins instead of only three 5 cent coins, thus reducing the number of overall coins I have at home.
         </p>
         <p>
-            In this article we will investigate elements of numerical
-            semigroups and their associated factorization lengths. Or
-            rather, the number of coins of each denomination it takes to add
-            up to a particular value.
+            The factorization length of a value is the number of coins it takes to add up to that value. There are two factorization lengths for the value of 15 cents, 3 and 5. The max factorization length is the larger of these two numbers and the min factorization length is the smaller. The max factorization length of 15 cents is 5 coins.
         </p>
         <p>
-            So in our country with only 3 and 5 cent coins, the value of 15
-            cents has a factorization length of three and five since three
-            times 5 cents equals 15 cents, as does five times 3 cents.
+            What other values have a max factorization length of 5 coins? Well, 17 cents does as the only way to get 17 cents is with four 3 cents coins and one 5 cent coin. Sometimes the max and min factorization length are the same. Are there any other values with a max factorization length of 5? There is one more: 19, as you can get that with three 3 cent coins and two 5 cent coins. But that is it. The number of elements with a max factorization length of five is 3.
         </p>
         <p>
-            In terms of numerical semigroups, the denominations in your
-            country's currency system are called generators since repeatedly
-            adding them together (including repetitions) in any combination
-            "generates" all the other possible values of money.
+            Now thinking more generally, is the number of elements with a max factorization length of k always 3? No, there are only two numbers with a max factorization length of 1, that is specifically three and five cents. Can you have more that 3 elements with a max factorization length of 3? Again, no. For any factorization length you can think of, the number of elements with that length is always less than or equal to three in our 3, 5 coin system.
+        </p>
+        <p>
+            This raises an interesting question: given an arbitrary coin system with any number of denomination of coins, does the number of values of money you can create with a max factorization length of k always stabilize at some value. The answer is yes, and the number at which it stabilizes is called The Second Frobenius Number.
+        </p>
+        <h5>Generators</h5>
+        <p>
+            The coins our country's currency system are example of generators as they can ``generate'' all possible value of money given you have enought coins.
         </p>
         <p>
             If your generators are 3 and 5, repeated adding of these numbers
@@ -97,17 +109,19 @@
             \[
                 \langle 3, 5 \rangle = \{3, 5, 6, 8, 9, 10, \ldots \}
             \]
-            where \( \langle 3, 5 \rangle\) denotes the set generated by 3 and 5.
+            where \( \langle 3, 5 \rangle\) denotes the set generated by 3
+            and 5. Notice that you cannot obtain 1, 2, 4, and 7.
         </p>
-
-<!--        <p id="gen1">-->
-<!--            There are many mathematical numbers and objects named after him but-->
-<!--            this one in particular will help motivate our study of numerical-->
-<!--            semigroups and lay the groundwork for the introduction of "The-->
-<!--            Second Frobenius Number", named by Joseph Gubeladze and Curtis-->
-<!--            Olinger in their paper "Associated Graded Rings for Numerical Monoid-->
-<!--            Rings" published 2022.-->
-<!--        </p>-->
+        <p>
+            Mathematically we would write,
+            \[
+	            \mathbb{Z^+} \setminus \langle 5, 7 \rangle = \{ 1, 2, 4, 7 \}
+            \]
+            where $\mathbb{Z}^+$ is the set of positive integers. We would have the complement of the set of possible monteary values within the set of positive integers is finite.
+        </p>
+        <p>
+            This is not always the case. If we take 2 as a generator, we get all the positive even numbers and its complement in the set of positive integers is not finite. Namely the comlement is the positive odd integers.
+        </p>
         <p>
             To get a feeling for the numbers generated by a set of generators,
             try entering in your own generators and see which numbers they
@@ -133,60 +147,29 @@
                 </div>
             </div>
         </div>
-
+        <h5>Numerical Semigroups</h5>
         <p>
-            Depending on which generators you entered, you may have noticed
-            the set of numbers created contains all consecutive integers after
-            some number. For example, the generating set of 2 and 3 is a
-            set of consecutive integers starting at 2. Whereas the
-            generating set of 3 and 5 doesn't start increasing by one until the
-            number 8. From 8 on, all positive integers are included in this
-            set. So, the number of elements <em>not</em> in this set is finite.
-            Mathematically we would write,
-            \[
-                \mathbb{Z^+} \setminus \langle 5, 7 \rangle = \{ 1, 2, 4, 7 \}
-            \]
-            where \( \mathbb{Z}^+ \) is the set of positive integers. We
-            would say
-            the complement of the set generated by 3 and 5 within the set of
-            positive integers equals 1, 2, 4, and 7.
+            By examining all the values we can create with whatever denominations of coins we have in our currency system, as long as the coins themselves don`t share any common factors, we've have been creating a structure called a numerical semigroup. The coins themselves are called generators since they ``generate'' all possible values of money.
         </p>
         <p>
-            Furthermore, there are generators that never produce a
-            set of consecutive integers. Therefore, their complement in
-            the set of positive integers is infinite (meaning there is an
-            infinite number of integers in this set).
+            Formally, a numerical semigroup is a subset of the nonnegative integers with addition as the binary operations (meaning you can add numbers and the result will be in this set) and a finite complement with the positive integers.
         </p>
         <p>
-            For example, consider the set generated by 2 which is the set of all
-            positive even integers. All the odd integers are missing from this
-            set.
+            Thus 3 and 5 create a numerical semigroup but 2 does not. In fact, all you need from a set of generators to create a numerical semigroup is for the generators to be relative prime, that is, they only share a common factor of 1.
         </p>
         <p>
-            In fact, for a set of integers to be generated that does not have
-            any "gaps" (i.e. has a finite complement in the positive integers),
-            all one needs is for the generators themselves to be coprime, that
-            is for the greatest common divisor of the generators to be 1.
+            Next notice that every numerical semigroup has a set of generators. The easiest way to see this is to consider the smallest non-zero element in the semigroup. This element, together with all other elements in the semigroup that are not divisible by it, form a set of generators of the semigroup.
         </p>
         <p>
-            This leads us to an important definition.
+            This is because every element in the semigroup can be expressed as a linear combination of the generators with non-negative integer coefficients. Thus, every numerical semigroup does indeed have a set of generators.
         </p>
         <p>
-            A <em>Numerical Semigroup</em> is a subset of the nonnegative
-            integers with addition as the binary operations (meaning you can
-            add numbers and the result will be in this set) and a finite
-            complement with all the positive integers. The set generated
-            by 2 and 3 and the set generated by 3 and 5 are both numerical
-            semigroups. If 0 is in the numerical semigroup, it is then
-            called a <em>numerical monoid</em>.
+            While every numerical semigroup contains a set of generators, the inverse that every set of generators creates a numerical semigroup is not always true. The even integers generated by 2 is an example of this.
         </p>
         <p>
-            Numerical Semigroups are the main field of study for this article
-            and while they might seem simple, there is a great deal to discover
-            about them. To get started, we will lay out some definitions
-            that will allow us to examine numbers, called invariants, that
-            capture information about the structure of the semigroups.
+            Numerical Semigroups are the main field of study for this article and while they might seem simple, there is a great deal to discover about them. To get started, we will lay out some definitions that will allow us to examine numbers, called invariants, that capture information about the structure of the semigroups.
         </p>
+        <h5>Max and min factorization lengths</h5>
         <p>
             Let \( m_1, \ldots, m_n \) be a set of generators for the
             numerical monoid \( M \). Then, for any monoid element \(m \),
@@ -332,18 +315,6 @@
                 {% endfor %}
             </tbody>
         </table>
-
-
-        <!--Some Latex-->
-        <div class="container my-4">
-            <p>
-                When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and
-                they are
-                \[
-                    x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
-                \]
-            </p>
-        </div>
 
 
 
