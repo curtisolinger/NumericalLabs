@@ -14,7 +14,7 @@ from semigroups import (
 )
 
 # Set the max factorization length to which you wish to examine
-N = 50
+N = 20
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 # $ python -c 'import secrets; print(secrets.token_hex())'
