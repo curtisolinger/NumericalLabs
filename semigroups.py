@@ -2,8 +2,6 @@ from itertools import combinations_with_replacement
 from collections import Counter
 import pandas as pd
 import json
-import plotly
-import plotly.express as px
 
 
 class SemigroupElement:
