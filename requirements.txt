@@ -3,6 +3,7 @@ Bootstrap-Flask==2.3.0
 click==8.1.6
 Flask==2.3.2
 Flask-WTF==1.1.1
+gunicorn==21.2.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.3
