@@ -104,27 +104,7 @@ def create_invariants_for_single_element(semigroup, single_element, gen):
     invariant_list[1] = max(factorization_lengths)
     invariant_list[2] = min(factorization_lengths)
 
-    print(invariant_list)
     return invariant_list
-
-    # i = 0
-    # while semigroup[i].number() <= single_element:
-    #     if semigroup[i].number() == single_element:
-    #         invariant_dict[single_element][0].append(semigroup[i].coefficients(
-    #         gen))
-    #     i += 1
-
-
-
-
-# def example1(gen):
-#     semigroup = []
-#     for k in range(1, 5):
-#         multisets_of_size_k = combinations_with_replacement(gen, k)
-#         for multisubset in multisets_of_size_k:
-#             semigroup.append(SemigroupElement(multisubset, k))
-#     semigroup = set(semigroup)
-#     return semigroup
 
 
 def create_factorization_fig(N, length_counts):
@@ -135,9 +115,12 @@ def create_factorization_fig(N, length_counts):
     df.loc[-1] = [0]
     df.index = df.index + 1
     df.sort_index(inplace=True)
-    fig = px.line(df)
-    graphjson = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    return graphjson
+    print(df)
+    return(df)
+    # fig = px.line(df)
+    # graphjson = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    # print(type(graphjson))
+    # return graphjson
 
 
 def create_example_1(semigroup):
