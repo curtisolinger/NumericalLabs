@@ -88,9 +88,16 @@ def create_second_frobenuis_graph():
     length_counts = calc_num_of_elements_of_len_k(semigroup3, gen03, N)
     df = create_factorization_fig(N, length_counts)
     
+    # Convert the dataframe to a list of dictionaries
+    data_for_vega = df.reset_index().to_dict(orient="records")
+
+    # print(data_for_vega)
+    # return jsonify(data_for_vega)
 
     labels = list(df.index)
     values = list(df['num'])
+
+
 
     data_for_chartjs = {
         "labels": labels,

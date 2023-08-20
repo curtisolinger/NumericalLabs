@@ -109,12 +109,15 @@ def create_factorization_fig(N, length_counts):
     df = pd.DataFrame.from_dict(length_counts, orient='index', columns=['num'])
     df = df[df.index <= N]
     df.sort_index(inplace=True)
+
     # Insert a row with index 0 and num value 0
     df.loc[-1] = [0]
     df.index = df.index + 1
     df.sort_index(inplace=True)
-    print(df)
+    
+    # print(df)
     return(df)
+
     # fig = px.line(df)
     # graphjson = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     # print(type(graphjson))

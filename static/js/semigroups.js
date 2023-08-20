@@ -147,6 +147,23 @@ function createSecondFrobeniusGraph() {
         data: { gen03: gen03 },
 
         success: function(data) {
+
+            // const vegaSpec = {
+            //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            //     "description": "A simple line chart",
+            //     "data": { "values": data },
+            //     "mark": "line",
+            //     "encoding": {
+            //         "x": { "field": "index", "type": "quantitative" },
+            //         "y": { "field": "num", "type": "quantitative" }
+            //     }
+            // };
+
+            // // Embed the Vega visualization in the div with id 'vegaChart'
+            // vegaEmbed('#vegaChart', vegaSpec);
+
+
+            
             const ctx = document.getElementById('myChart').getContext('2d');
 
             // If there's an existing chart instance, destroy it
