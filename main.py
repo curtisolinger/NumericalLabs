@@ -1,7 +1,14 @@
 import os
 import re
 from flask import Flask, render_template, session, request, jsonify
-from flask_bootstrap import Bootstrap5
+# from flask_bootstrap import Bootstrap5
+from flask_wtf import FlaskForm
+from wtforms import StringField, EmailField, SubmitField
+from wtforms.validators import InputRequired, Email, Optional
+from flask_wtf.csrf import CSRFProtect
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+from dotenv import load_dotenv
 from semigroups import (
     create_semigroup,
     calc_num_of_elements_of_len_k,
@@ -13,8 +20,26 @@ from semigroups import (
 
 # Set the max factorization length to which you wish to examine
 N = 20
+
+load_dotenv()
+SECRET_KEY = os.environ.get('SECRET_KEY')
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+EMAIL = os.environ.get('EMAIL')
+
+print(SECRET_KEY)
+
 app = Flask(__name__)
-bootstrap = Bootstrap5(app)
+app.config['SECRET_KEY'] = SECRET_KEY
+csrf = CSRFProtect(app)
+
+
+class ContactForm(FlaskForm):
+    first_name = StringField('First Name', validators=[InputRequired()])
+    last_name  = StringField('Last Name', validators=[Optional()])
+    email = EmailField('Email', validators=[Email(message='Please enter a valid email')])
+    subject = StringField('Subject', validators=[InputRequired()])
+    message_to_send = StringField('Message', validators=[InputRequired()])
+    submit = SubmitField('Submit')
 
 
 @app.route('/')
@@ -25,6 +50,66 @@ def home():
 @app.route('/semigroups')
 def semigroups():
     return render_template('semigroups.html')
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+    if form.validate_on_submit():
+        data = request.form
+        first_name = data['first_name']
+        last_name = data['last_name']
+        email = data['email']
+        subject = data['subject']
+        message_to_send = data['message_to_send']
+
+        print(first_name)
+        print(type(first_name))
+        print('\n')
+
+        print(last_name)
+        print(type(last_name))
+        print('\n')
+
+        print(email)
+        print(type(email))
+        print('\n')
+
+        print(subject)
+        print(type(subject))
+        print('\n')
+
+        print(message_to_send)
+        print(type(message_to_send))
+        print('\n')
+
+        message = Mail(
+            from_email=EMAIL,
+            to_emails=EMAIL,
+            subject=subject,
+            # html_content=message_to_send)
+            html_content = f"""
+                Message from NumericalLabs.com contact form<br>
+                From: {first_name} {last_name}<br>
+                Email: {email}<br>
+                Subject: {subject}<br>
+                Message: {message_to_send}
+                """)
+        
+        try:
+            sg = SendGridAPIClient(SENDGRID_API_KEY)
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print(e.message)
+
+        
+        return render_template('contact.html', msg_sent=True, form=form)
+    
+    return render_template('contact.html', msg_sent=False, form=form)
+
 
 
 @app.route('/calculateSemigroup', methods=['POST'])
