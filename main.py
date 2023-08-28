@@ -63,31 +63,10 @@ def contact():
         subject = data['subject']
         message_to_send = data['message_to_send']
 
-        print(first_name)
-        print(type(first_name))
-        print('\n')
-
-        print(last_name)
-        print(type(last_name))
-        print('\n')
-
-        print(email)
-        print(type(email))
-        print('\n')
-
-        print(subject)
-        print(type(subject))
-        print('\n')
-
-        print(message_to_send)
-        print(type(message_to_send))
-        print('\n')
-
         message = Mail(
             from_email=EMAIL,
             to_emails=EMAIL,
             subject=subject,
-            # html_content=message_to_send)
             html_content = f"""
                 Message from NumericalLabs.com contact form<br>
                 From: {first_name} {last_name}<br>
