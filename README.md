@@ -1,1 +1,1 @@
-Numerical Labs is a communtiy for mathematics students and professionals to showcase their work and research is an accessible way using clear writing and interactive forms and graphics.
+Numerical Labs is a community for mathematics students and professionals to showcase their work and research in an accessible way using clear writing and interactive forms and graphics.
