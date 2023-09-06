@@ -4,6 +4,7 @@ let myChartInstance;
 function calculateSemigroup() {
     // Get the value from the input field
     const gen01 = document.getElementById('gen01').value;
+    console.log(gen01)
 
     // Validate the input
     if (!isValidInput(gen01)) {

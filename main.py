@@ -27,10 +27,13 @@ SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 EMAIL = os.environ.get('EMAIL')
 
 print(SECRET_KEY)
+print(SENDGRID_API_KEY)
+print(EMAIL)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 csrf = CSRFProtect(app)
+app.config['WTF_CSRF_ENABLED'] = False
 
 
 class ContactForm(FlaskForm):
@@ -94,6 +97,7 @@ def contact():
 @app.route('/calculateSemigroup', methods=['POST'])
 def calculate_semigroup():
     data = request.form['gen01']
+    print(data)
 
     # Validate the input
     if not re.match(r"^(\d+)(,\s*\d+)*$", data):
