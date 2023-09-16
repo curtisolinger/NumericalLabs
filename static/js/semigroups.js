@@ -1,6 +1,41 @@
 let myChartInstance;
 
 
+window.onload = function () {
+    // Set default values if the input field is empty
+    let gen01 = document.getElementById('gen01').value;
+    if (!gen01) {
+        gen01 = "3, 5"; // Default value
+        document.getElementById('gen01').value = gen01; // Update the input field with default values
+    }
+    calculateSemigroup();
+
+    let gen02 = document.getElementById('gen02').value;
+    if (!gen02) {
+        gen02 = "3, 5"; // Default value
+        document.getElementById('gen02').value = gen02; // Update the input field with default values
+    }
+
+    let element01 = document.getElementById('element01').value;
+    if (!element01) {
+        element01 = "42"; // Default value
+        document.getElementById('element01').value = element01; // Update the input field with default values
+    }
+
+    calculateFactorizationLengths();
+
+    let gen03 = document.getElementById('gen03').value;
+    if (!gen03) {
+        gen03 = "3, 5"; // Default value
+        document.getElementById('gen03').value = gen03; // Update the input field with default values
+    }
+
+    createSecondFrobeniusGraph();
+
+}
+
+
+
 function calculateSemigroup() {
     // Get the value from the input field
     const gen01 = document.getElementById('gen01').value;
