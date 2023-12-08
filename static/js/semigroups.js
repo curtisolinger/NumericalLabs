@@ -1,6 +1,3 @@
-let myChartInstance;
-
-
 window.onload = function () {
     // Set default values if the input field is empty
     let gen01 = document.getElementById('gen01').value;
@@ -141,31 +138,7 @@ function calculateFactorizationLengths() {
 }
 
 
-// function createSecondFrobeniusGraph() {
-//     // Get the value from the input field
-//     const gen03 = document.getElementById('gen03').value;
-
-//     // Validate the input
-//     if (!isValidInput(gen03)) {
-//         alert("Please enter comma-separated integers only");
-//         return;
-//     }
-
-//     // Send data to the server using AJAX
-//     $.ajax({
-//         url: '/createSecondFrobeniusGraph',
-//         method: 'POST',
-//         data: { gen03: gen03 },
-//         success: function(response) {
-//             if (response.error) {
-//             alert(response.error);
-//             return;
-//             }
-       
-//         }
-//     });
-// }
-
+let myChartInstance;
 
 function createSecondFrobeniusGraph() {
     // Get the value from the input field
@@ -183,22 +156,6 @@ function createSecondFrobeniusGraph() {
         data: { gen03: gen03 },
 
         success: function(data) {
-
-            // const vegaSpec = {
-            //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            //     "description": "A simple line chart",
-            //     "data": { "values": data },
-            //     "mark": "line",
-            //     "encoding": {
-            //         "x": { "field": "index", "type": "quantitative" },
-            //         "y": { "field": "num", "type": "quantitative" }
-            //     }
-            // };
-
-            // // Embed the Vega visualization in the div with id 'vegaChart'
-            // vegaEmbed('#vegaChart', vegaSpec);
-
-
             
             const ctx = document.getElementById('myChart').getContext('2d');
 

@@ -150,11 +150,13 @@ def create_second_frobenuis_graph():
     # Validate the input
     if not re.match(r"^(\d+)(,\s*\d+)*$", data):
         return jsonify(error="Invalid input. Please enter comma-separated integers only.")
+    
     gen03 = [int(x) for x in data.split(',')]
 
     semigroup3 = create_semigroup(gen03, N)
     length_counts = calc_num_of_elements_of_len_k(semigroup3, gen03, N)
     df = create_factorization_fig(N, length_counts)
+    print(df)
     
     # Convert the dataframe to a list of dictionaries
     data_for_vega = df.reset_index().to_dict(orient="records")
