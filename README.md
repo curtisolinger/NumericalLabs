@@ -88,9 +88,3 @@ To use the webpage, simply input the desired parameters related to numerical sem
 ## Application:
 
 This program can be used to study and analyze semigroups, specifically focusing on the properties of their elements, such as sum and factorization patterns. It's particularly useful for those interested in abstract algebra and computational mathematics.
-
-
-
-# Research Topic 1: Numerical Semigroups
-
-A numerical semigroup is a subset of the nonnegative integers with finite complement. Every numerical semigroup contains a set of generators, that is, a minimal subset that when whose elements are added together repeatedly, create all the other elements of the semigroup. 
